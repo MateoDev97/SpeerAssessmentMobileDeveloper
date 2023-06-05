@@ -11,7 +11,9 @@ import SwiftUI
 struct SpeerTechAssessmentApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                UserView(showBack: false)
+            }
         }
     }
 }

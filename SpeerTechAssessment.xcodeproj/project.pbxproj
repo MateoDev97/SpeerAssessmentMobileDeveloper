@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		382514362A2E77FC0021A242 /* SpeerTechAssessmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514352A2E77FC0021A242 /* SpeerTechAssessmentApp.swift */; };
-		382514382A2E77FC0021A242 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514372A2E77FC0021A242 /* ContentView.swift */; };
+		382514382A2E77FC0021A242 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514372A2E77FC0021A242 /* UserView.swift */; };
 		3825143A2A2E77FD0021A242 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382514392A2E77FD0021A242 /* Assets.xcassets */; };
 		3825143D2A2E77FD0021A242 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3825143C2A2E77FD0021A242 /* Preview Assets.xcassets */; };
+		382514492A2E78D00021A242 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514482A2E78D00021A242 /* BaseView.swift */; };
+		3825144F2A2E7A980021A242 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825144E2A2E7A980021A242 /* NetworkManager.swift */; };
+		382514522A2E7DF60021A242 /* GitHubUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514512A2E7DF60021A242 /* GitHubUserResponse.swift */; };
+		382514542A2E7E490021A242 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514532A2E7E490021A242 /* UserViewModel.swift */; };
+		382514582A2E903C0021A242 /* ListUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514572A2E903C0021A242 /* ListUsersView.swift */; };
+		3825145A2A2E967C0021A242 /* ListUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514592A2E967C0021A242 /* ListUsersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		382514322A2E77FC0021A242 /* SpeerTechAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeerTechAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382514352A2E77FC0021A242 /* SpeerTechAssessmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeerTechAssessmentApp.swift; sourceTree = "<group>"; };
-		382514372A2E77FC0021A242 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		382514372A2E77FC0021A242 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		382514392A2E77FD0021A242 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3825143C2A2E77FD0021A242 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		382514482A2E78D00021A242 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		3825144E2A2E7A980021A242 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		382514512A2E7DF60021A242 /* GitHubUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubUserResponse.swift; sourceTree = "<group>"; };
+		382514532A2E7E490021A242 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		382514572A2E903C0021A242 /* ListUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUsersView.swift; sourceTree = "<group>"; };
+		382514592A2E967C0021A242 /* ListUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUsersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +63,11 @@
 		382514342A2E77FC0021A242 /* SpeerTechAssessment */ = {
 			isa = PBXGroup;
 			children = (
+				3825144A2A2E792A0021A242 /* Utils */,
+				382514432A2E781E0021A242 /* Model */,
+				382514442A2E78270021A242 /* View */,
+				382514472A2E78400021A242 /* ViewModel */,
 				382514352A2E77FC0021A242 /* SpeerTechAssessmentApp.swift */,
-				382514372A2E77FC0021A242 /* ContentView.swift */,
 				382514392A2E77FD0021A242 /* Assets.xcassets */,
 				3825143B2A2E77FD0021A242 /* Preview Content */,
 			);
@@ -65,6 +80,57 @@
 				3825143C2A2E77FD0021A242 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		382514432A2E781E0021A242 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				382514502A2E7DBE0021A242 /* Response */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		382514442A2E78270021A242 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				382514372A2E77FC0021A242 /* UserView.swift */,
+				382514482A2E78D00021A242 /* BaseView.swift */,
+				382514572A2E903C0021A242 /* ListUsersView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		382514472A2E78400021A242 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				382514532A2E7E490021A242 /* UserViewModel.swift */,
+				382514592A2E967C0021A242 /* ListUsersViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3825144A2A2E792A0021A242 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3825144D2A2E7A7B0021A242 /* Networking */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3825144D2A2E7A7B0021A242 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3825144E2A2E7A980021A242 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		382514502A2E7DBE0021A242 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				382514512A2E7DF60021A242 /* GitHubUserResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +203,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				382514382A2E77FC0021A242 /* ContentView.swift in Sources */,
+				3825145A2A2E967C0021A242 /* ListUsersViewModel.swift in Sources */,
+				382514492A2E78D00021A242 /* BaseView.swift in Sources */,
+				382514382A2E77FC0021A242 /* UserView.swift in Sources */,
+				382514542A2E7E490021A242 /* UserViewModel.swift in Sources */,
+				382514522A2E7DF60021A242 /* GitHubUserResponse.swift in Sources */,
+				3825144F2A2E7A980021A242 /* NetworkManager.swift in Sources */,
 				382514362A2E77FC0021A242 /* SpeerTechAssessmentApp.swift in Sources */,
+				382514582A2E903C0021A242 /* ListUsersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
