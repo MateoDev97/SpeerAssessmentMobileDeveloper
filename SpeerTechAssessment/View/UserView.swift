@@ -70,66 +70,31 @@ struct UserView: View {
                         )
                         .padding(.bottom, 30)
                         
-                        Group {
-                            Text("Username: ")
-                                .font(.system(size: 17, weight: .bold)) +
-                            Text(userData.login)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Group {
-                            Text("Name: ")
-                                .font(.system(size: 17, weight: .bold)) +
-                            Text(userData.name ?? "-")
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Group {
-                            Text("Description: ")
-                                .font(.system(size: 17, weight: .bold)) +
-                            Text(userData.bio ?? "-")
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
+                        RowUserText(title: "Username: ", bodyText: userData.login)
+                        RowUserText(title: "Name: ", bodyText: userData.name ?? "-")
+                        RowUserText(title: "Description: ", bodyText: userData.bio ?? "-")
                         
                         if let userFollowers = userData.followers, userFollowers > 0 {
                             NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Followers", path: "\(userData.login)/followers"), label: {
-                                Group {
-                                    Text("Followers: ")
-                                        .font(.system(size: 17, weight: .bold)) +
-                                    Text("\(userFollowers)")
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                RowUserText(title: "Followers: ", bodyText: "\(userFollowers)")
+                                
                             })
                         } else {
-                            Group {
-                                Text("Followers: ")
-                                    .font(.system(size: 17, weight: .bold)) +
-                                Text("0")
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            RowUserText(title: "Followers: ", bodyText: "0")
                         }
-                        
                         
                         if let usersFollowing = userData.following, usersFollowing > 0 {
                             NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Following", path: "\(userData.login)/following"), label: {
-                                Group {
-                                    Text("Following: ")
-                                        .font(.system(size: 17, weight: .bold)) +
-                                    Text("\(usersFollowing)")
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                RowUserText(title: "Following: ", bodyText: "\(usersFollowing)")
+
                             })
                         } else {
-                            Group {
-                                Text("Following: ")
-                                    .font(.system(size: 17, weight: .bold)) +
-                                Text("0")
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            RowUserText(title: "Following: ", bodyText: "0")
+                            
                         }
-                        
-                        
                         
                         Spacer()
                     }

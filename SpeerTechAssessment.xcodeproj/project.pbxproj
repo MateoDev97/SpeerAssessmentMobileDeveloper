@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3816A25F2A2F6C8C0037894B /* RowUserText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3816A25E2A2F6C8C0037894B /* RowUserText.swift */; };
 		382514362A2E77FC0021A242 /* SpeerTechAssessmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514352A2E77FC0021A242 /* SpeerTechAssessmentApp.swift */; };
 		382514382A2E77FC0021A242 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382514372A2E77FC0021A242 /* UserView.swift */; };
 		3825143A2A2E77FD0021A242 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 382514392A2E77FD0021A242 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3816A25E2A2F6C8C0037894B /* RowUserText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowUserText.swift; sourceTree = "<group>"; };
 		382514322A2E77FC0021A242 /* SpeerTechAssessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeerTechAssessment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		382514352A2E77FC0021A242 /* SpeerTechAssessmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeerTechAssessmentApp.swift; sourceTree = "<group>"; };
 		382514372A2E77FC0021A242 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
@@ -44,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3816A25D2A2F6C6D0037894B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3816A25E2A2F6C8C0037894B /* RowUserText.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		382514292A2E77FC0021A242 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +122,7 @@
 		3825144A2A2E792A0021A242 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3816A25D2A2F6C6D0037894B /* UI */,
 				3825144D2A2E7A7B0021A242 /* Networking */,
 			);
 			path = Utils;
@@ -207,6 +218,7 @@
 				382514492A2E78D00021A242 /* BaseView.swift in Sources */,
 				382514382A2E77FC0021A242 /* UserView.swift in Sources */,
 				382514542A2E7E490021A242 /* UserViewModel.swift in Sources */,
+				3816A25F2A2F6C8C0037894B /* RowUserText.swift in Sources */,
 				382514522A2E7DF60021A242 /* GitHubUserResponse.swift in Sources */,
 				3825144F2A2E7A980021A242 /* NetworkManager.swift in Sources */,
 				382514362A2E77FC0021A242 /* SpeerTechAssessmentApp.swift in Sources */,
