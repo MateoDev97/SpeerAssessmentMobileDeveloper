@@ -19,6 +19,8 @@ class UserViewModel: ObservableObject {
 
     func searchUserByUserName(_ username: String) {
         
+        searchUserValue = ""
+        
         NetworkManager.shared.genericApiRequest(GitHubUserResponse.self, path: .USERS, extraPath: username)
             .sink(receiveCompletion: { [weak self] completion in
                 switch completion {

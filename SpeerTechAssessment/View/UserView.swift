@@ -11,7 +11,9 @@ struct UserView: View {
     
     var userName: String?
     var showBack: Bool = true
+    
     @StateObject var viewModel = UserViewModel()
+    @FocusState private var searchFocused: Bool
     
     var body: some View {
         BaseView(title: "GitHub Search", showBackButton: showBack, content: content)
@@ -25,125 +27,130 @@ struct UserView: View {
     }
     
     private var content: some View {
-        VStack {
+        ScrollView {
             
-            if userName == nil {
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                    TextField("GitHub user name", text: $viewModel.searchUserValue)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                    Button {
-                        viewModel.searchUserByUserName(viewModel.searchUserValue)
-                    } label: {
-                        Text("Search")
-                    }
-                }
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color.black))
-            }
-            
-            if let userData = viewModel.userData, viewModel.showResults {
-                VStack(spacing: 15) {
-                    Spacer()
-                    
-                    AsyncImage(
-                        url: URL(string: userData.avatarURL),
-                        content: { image in
-                            image.resizable()
-                                .scaledToFit()
-                                .frame(width: 220)
-                                .cornerRadius(110)
-                                .overlay(RoundedRectangle(cornerRadius: 110)
-                                    .stroke(Color.black, lineWidth: 4))
-                                .shadow(radius: 10)
-                        },
-                        placeholder: {
-                            ProgressView()
+            VStack {
+                
+                if userName == nil {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                        TextField("GitHub user name", text: $viewModel.searchUserValue)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .focused($searchFocused)
+                        Button {
+                            searchFocused = false
+                            viewModel.searchUserByUserName(viewModel.searchUserValue)
+                        } label: {
+                            Text("Search")
                         }
-                    )
-                    .padding(.bottom, 30)
-                    
-                    Group {
-                        Text("Username: ")
-                            .font(.system(size: 17, weight: .bold)) +
-                        Text(userData.login)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Group {
-                        Text("Name: ")
-                            .font(.system(size: 17, weight: .bold)) +
-                        Text(userData.name ?? "-")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Group {
-                        Text("Description: ")
-                            .font(.system(size: 17, weight: .bold)) +
-                        Text(userData.bio ?? "-")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    
-                    if let userFollowers = userData.followers, userFollowers > 0 {
-                        NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Followers", path: "\(userData.login)/followers"), label: {
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(lineWidth: 2).foregroundColor(Color.black))
+                }
+                
+                if let userData = viewModel.userData, viewModel.showResults {
+                    VStack(spacing: 15) {
+                        Spacer()
+                        
+                        AsyncImage(
+                            url: URL(string: userData.avatarURL),
+                            content: { image in
+                                image.resizable()
+                                    .scaledToFit()
+                                    .frame(width: 220)
+                                    .cornerRadius(110)
+                                    .overlay(RoundedRectangle(cornerRadius: 110)
+                                        .stroke(Color.black, lineWidth: 4))
+                                    .shadow(radius: 10)
+                            },
+                            placeholder: {
+                                ProgressView()
+                            }
+                        )
+                        .padding(.bottom, 30)
+                        
+                        Group {
+                            Text("Username: ")
+                                .font(.system(size: 17, weight: .bold)) +
+                            Text(userData.login)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Group {
+                            Text("Name: ")
+                                .font(.system(size: 17, weight: .bold)) +
+                            Text(userData.name ?? "-")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Group {
+                            Text("Description: ")
+                                .font(.system(size: 17, weight: .bold)) +
+                            Text(userData.bio ?? "-")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        
+                        if let userFollowers = userData.followers, userFollowers > 0 {
+                            NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Followers", path: "\(userData.login)/followers"), label: {
+                                Group {
+                                    Text("Followers: ")
+                                        .font(.system(size: 17, weight: .bold)) +
+                                    Text("\(userFollowers)")
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            })
+                        } else {
                             Group {
                                 Text("Followers: ")
                                     .font(.system(size: 17, weight: .bold)) +
-                                Text("\(userFollowers)")
+                                Text("0")
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        })
-                    } else {
-                        Group {
-                            Text("Followers: ")
-                                .font(.system(size: 17, weight: .bold)) +
-                            Text("0")
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    
-                    if let usersFollowing = userData.following, usersFollowing > 0 {
-                        NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Following", path: "\(userData.login)/following"), label: {
+                        
+                        
+                        if let usersFollowing = userData.following, usersFollowing > 0 {
+                            NavigationLink(destination: ListUsersView(title: "\(userData.login.uppercased()) Following", path: "\(userData.login)/following"), label: {
+                                Group {
+                                    Text("Following: ")
+                                        .font(.system(size: 17, weight: .bold)) +
+                                    Text("\(usersFollowing)")
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            })
+                        } else {
                             Group {
                                 Text("Following: ")
                                     .font(.system(size: 17, weight: .bold)) +
-                                Text("\(usersFollowing)")
+                                Text("0")
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        })
-                    } else {
-                        Group {
-                            Text("Following: ")
-                                .font(.system(size: 17, weight: .bold)) +
-                            Text("0")
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        
+                        
+                        Spacer()
                     }
                     
                     
-                    
-                    Spacer()
+                } else if viewModel.showResults {
+                    VStack {
+                        Spacer()
+                        Image("image_not_found")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70, height: 70)
+                        Text("User name not found on GitHub")
+                        Spacer()
+                    }.padding(.horizontal, 50)
                 }
                 
-                
-            } else if viewModel.showResults {
-                VStack {
-                    Spacer()
-                    Image("image_not_found")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 70, height: 70)
-                    Text("User name not found on GitHub")
-                    Spacer()
-                }.padding(.horizontal, 50)
+                Spacer()
             }
-            
-            Spacer()
+            .padding()
         }
-        .padding()
     }
 }
 
